@@ -1,59 +1,35 @@
 <?php
 
-include_once 'Conexión.php';
+class DB{
 
-    class Producto extends DB{
+    private $host;
+    private $db;
+    private $user;
+    private $password;
+    private $charset;
 
-        public function obtenerproductos(){
+    public function __construct(){
+        $this -> host = 'localhost';
+        $this -> db = 'hotel';
+        $this -> user = 'root';
+        $this -> password = '123qwe';
+        $this -> charset = 'utf8mb4';
+    }
 
-            $query = $this->connect()->query('SELECT * FROM producto');
-            return $query; 
-        }
+    function connect(){
+        try {
+            $connection = "mysql:host=" . $this->host . ";dbname=" . $this ->db. ";charset=" . $this->charset;
 
-        public function obtenerproducto($id){
-            $query = $this->connect()->prepare('SELECT * FROM producto WHERE Id_producto = :id');
-            $query->execute(['id' => $id]);
-            return $query;
-        }
+            $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 
+                        PDO::ATTR_EMULATE_PREPARES => false,
+                        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"];
 
-        public function nuevoProducto($producto){
-            $query = $this->connect()->prepare('INSERT INTO producto (Nombre_producto,
-                                                                        Status,
-                                                                        Descripcion_producto,
-                                                                        Precio_producto,
-                                                                        Fecha_registro)
-                                                                        VALUES (:Nombre_producto,
-                                                                                :Status,
-                                                                                :Descripcion_producto,
-                                                                                :Precio_producto,
-                                                                                :Fecha_registro)');
-
-            $query->execute(['Nombre_producto' => $producto['Nombre_producto'],
-                            'Status' => $producto['Status'],
-                            'Descripcion_producto' => $producto['Descripcion_producto'],
-                            'Precio_producto' => $producto['Precio_producto'],
-                            'Fecha_registro' => $producto['Fecha_registro']]);
-            return $query;
-        }
-
-        public function actualizarProducto($id, $new){
-            $query = $this->connect()->prepare('UPDATE producto SET Status = :Status,
-                                                                    Descripcion_producto = :Descripcion_producto,
-                                                                    Precio_producto = :Precio_producto 
-                                                                WHERE Id_producto = :Id_producto');
-            $query->execute(['Id_producto' => $id['Id_producto'],
-                             'Status' => $new['Status'],
-                             'Descripcion_producto' => $new['Descripcion_producto'],
-                             'Precio_producto' => $new['Precio_producto']]);
-            return $query;
-        }
-
-        public function eliminarProducto($id, $drop){
-            $query = $this->connect()->prepare('UPDATE producto SET Status = :Status 
-                                                                WHERE Id_producto = :Id_producto');
-            $query->execute(['Id_producto' => $id['Id_producto'],
-                             'Status' => $drop['Status']]);
-            return $query;
+            $pdo = new PDO($connection, $this->user, $this->password, $options);
+            return $pdo;
+        } catch (PDOException $e) {
+            print_r("Error connection: " . $e->getMessage());
+            
         }
     }
-?>
+}
+?
