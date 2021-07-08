@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Facturacion Proveedor Cabecera</title>
+</head>
+<body>
+
+    <form action="AddFactura_prov_cabe.php" method="POST" enctype="multipart/form-data">
+        <label> Fecha </label>
+        <input type="text" name="Fecha" required>
+        <br>
+        <label> Id Proveedor </label>
+        <input type="text" name="Id_proveedor" required>
+        <br>
+        <label> Monto Total </label>
+        <input type="text" name="Monto_total" required>
+        <br>
+        <label> Cantidad Productos </label>
+        <input type="text" name="Cantidad_productos" required>
+        <br>
+        <label> Id Cargo </label>
+        <input type="text" name="Id_cargo" required>
+        <br>
+        <label> Fecha Registro </label>
+        <input type="text" name="Fecha_registro" required>
+        <br>
+        <label> Id Administrador </label>
+        <input type="text" name="Administrador_id_administrador" required>
+        
+
+        <br>
+        <br>
+        <input type="submit" value="Registrar Nueva Factura de Proveedor">
+
+    </form>
+
+</body>
+</html>
