@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Facturacion Cuerpo</title>
+</head>
+<body>
+
+    <form action="AddFactura_cuerpo.php" method="POST" enctype="multipart/form-data">
+        <label> Id Factura Cabecera </label>
+        <input type="text" name="Id_factura_cabe" required>
+        <br>
+        <label> Cantidad</label>
+        <input type="text" name="Cantidad" required>
+        <br>
+        <label> Status Reservacion </label>
+        <input type="text" name="Status_reservacion" required>
+        <br>
+        <label> Status Servicio </label>
+        <input type="text" name="Status_servicio" required>
+        <br>
+        <label> Status Promocion </label>
+        <input type="text" name="Status_promocion" required>
+        <br>
+        <label> Fecha Registro </label>
+        <input type="text" name="Fecha_registro" required>
+
+        <br>
+        <br>
+        <input type="submit" value="Registrar Nueva Factura">
+
+    </form>
+
+</body>
+</html>
