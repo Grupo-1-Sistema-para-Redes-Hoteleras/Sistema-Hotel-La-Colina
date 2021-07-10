@@ -7,7 +7,6 @@ class apitipohabitacion{
     function getAll(){                       /*FUNCION PARA BUSCAR TODOS*/
         $tipo = new TipoHabitacion();
         $tipos = array();
-        $tipos ["items"] = array();
 
         $res = $tipo -> obtenertipohabitaciones();
 
@@ -15,12 +14,15 @@ class apitipohabitacion{
 
             while($row = $res -> fetch(PDO::FETCH_ASSOC)){
                 $item = array(
-                    'id_tipo_habitacion' => $row['id_tipo_habitacion'],
-                    'nombre_tipo' => $row['nombre_tipo'],
+                    'id' => $row['id_tipo_habitacion'],
+                    'name' => $row['nombre_tipo'],
                     'status' => $row['status'],
-                    'fecha_registro' => $row['fecha_registro']
+                    'price' => $row['precio_prom'],
+                    'description' => $row['descripcion'],
+                    'imges' => explode(",",$row['imagenes']),
+                    'fecha_registro' => $row['fecha_registro'],
                 );
-                array_push($tipos['items'], $item);
+                array_push($tipos, $item);
             }
 
             $this->printJSON($tipos);
@@ -33,7 +35,6 @@ class apitipohabitacion{
     function getById($id){                  /*FUNCION PARA BUSCAR POR ID*/
         $tipo = new TipoHabitacion();
         $tipos = array();
-        $tipos["items"] = array();
 
         $res = $tipo->obtenertipohabitacion($id);
 
@@ -41,12 +42,15 @@ class apitipohabitacion{
             $row = $res->fetch();
         
             $item=array(
-                'id_tipo_habitacion' => $row['id_tipo_habitacion'],
-                'nombre_tipo' => $row['nombre_tipo'],
-                'status' => $row['status'],
-                'fecha_registro' => $row['fecha_registro']
+                    'id' => $row['id_tipo_habitacion'],
+                    'name' => $row['nombre_tipo'],
+                    'status' => $row['status'],
+                    'price' => $row['precio_prom'],
+                    'description' => $row['descripcion'],
+                    'imges' => explode(",",$row['imagenes']),
+                    'fecha_registro' => $row['fecha_registro'],
             );
-            array_push($tipos["items"], $item);
+            array_push($tipos, $item);
 
             $this->printJSON($tipos);
         }else{
@@ -85,15 +89,15 @@ class apitipohabitacion{
     }
 
     function error($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>'; 
+        echo  json_encode(array('mensaje' => $mensaje)) ; 
     }
 
     function exito($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>';
+        echo  json_encode(array('mensaje' => $mensaje)) ;
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 }
     
