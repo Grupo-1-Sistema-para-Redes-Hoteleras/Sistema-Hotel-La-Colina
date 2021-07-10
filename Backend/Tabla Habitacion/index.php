@@ -2,6 +2,8 @@
 
 include_once 'ApiHabitación.php';
 
+header('Access-Control-Allow-Origin: *');
+
 $api = new apihabitacion();
 
 if(isset($_GET['id'])){
