@@ -7,7 +7,6 @@ class apipromocion{
     function getAll(){                       /*FUNCION PARA BUSCAR TODOS*/
         $promocion = new Promocion();
         $promociones = array();
-        $promociones ["items"] = array();
 
         $res = $promocion -> obtenerpromociones();
 
@@ -15,16 +14,16 @@ class apipromocion{
 
             while($row = $res -> fetch(PDO::FETCH_ASSOC)){
                 $item = array(
-                    'Id_promocion' => $row['Id_promocion'],
-                    'Nombre_promocion' => $row['Nombre_promocion'],
-                    'Fecha_inicio' => $row['Fecha_inicio'],
-                    'Fecha_final' => $row['Fecha_final'],
-                    'Descuento' => $row['Descuento'],
-                    'Status' => $row['Status'],
-                    'Id_tipo_habitacion' => $row['Id_tipo_habitacion'],
-                    'Fecha_registro' => $row['Fecha_registro']
+                    'id' => $row['Id_promocion'],
+                    'name' => $row['Nombre_promocion'],
+                    'fecha_i' => $row['Fecha_inicio'],
+                    'fecha_f' => $row['Fecha_final'],
+                    'discount' => $row['Descuento'],
+                    'status' => $row['Status'],
+                    'id_room_type' => $row['Id_tipo_habitacion'],
+                    'fecha_registro' => $row['Fecha_registro']
                 );
-                array_push($promociones['items'], $item);
+                array_push($promociones, $item);
             }
 
             $this->printJSON($promociones);
@@ -37,7 +36,6 @@ class apipromocion{
     function getById($id){                  /*FUNCION PARA BUSCAR POR ID*/
         $promocion = new Promocion();
         $promociones = array();
-        $promociones["items"] = array();
 
         $res = $promocion->obtenerpromocion($id);
 
@@ -45,16 +43,16 @@ class apipromocion{
             $row = $res->fetch();
         
             $item=array(
-                    'Id_promocion' => $row['Id_promocion'],
-                    'Nombre_promocion' => $row['Nombre_promocion'],
-                    'Fecha_inicio' => $row['Fecha_inicio'],
-                    'Fecha_final' => $row['Fecha_final'],
-                    'Descuento' => $row['Descuento'],
-                    'Status' => $row['Status'],
-                    'Id_tipo_habitacion' => $row['Id_tipo_habitacion'],
-                    'Fecha_registro' => $row['Fecha_registro']
+                    'id' => $row['Id_promocion'],
+                    'name' => $row['Nombre_promocion'],
+                    'fecha_i' => $row['Fecha_inicio'],
+                    'fecha_f' => $row['Fecha_final'],
+                    'discount' => $row['Descuento'],
+                    'status' => $row['Status'],
+                    'id_room_type' => $row['Id_tipo_habitacion'],
+                    'fecha_registro' => $row['Fecha_registro']
             );
-            array_push($promociones["items"], $item);
+            array_push($promociones, $item);
 
             $this->printJSON($promociones);
         }else{
@@ -93,15 +91,15 @@ class apipromocion{
     }
 
     function error($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>'; 
+        echo json_encode(array('mensaje' => $mensaje)); 
     }
 
     function exito($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>';
+        echo json_encode(array('mensaje' => $mensaje));
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 }
     
