@@ -7,7 +7,6 @@ class apifacturas_cabe{
     function getAll(){                       /*FUNCION PARA BUSCAR TODOS*/
         $factura = new Factura_cabe();
         $facturas = array();
-        $facturas ["items"] = array();
 
         $res = $factura -> obtenerfacturas_cabe();
 
@@ -15,19 +14,19 @@ class apifacturas_cabe{
 
             while($row = $res -> fetch(PDO::FETCH_ASSOC)){
                 $item = array(
-                    'Id_factura' => $row['Id_factura'],
-                    'Fecha' => $row['Fecha'],
-                    'Id_cliente' => $row['Id_cliente'],
-                    'Monto' => $row['Monto'],
-                    'Cantidad_producto' => $row['Cantidad_producto'],
-                    'Id_trabajador' => $row['Id_trabajador'],
-                    'Id_reservacion' => $row['Id_reservacion'],
-                    'Id_servicio' => $row['Id_servicio'],
-                    'Id_promocion' => $row['Id_promocion'],
-                    'Administrador_id_administrador' => $row['Administrador_id_administrador'],
-                    'Fecha_registro' => $row['Fecha_registro']
+                    'id' => $row['Id_factura'],
+                    'fecha' => $row['Fecha'],
+                    'id_client' => $row['Id_cliente'],
+                    'amount' => $row['Monto'],
+                    'quantity' => $row['Cantidad_producto'],
+                    'id_empl' => $row['Id_trabajador'],
+                    'id_reservation' => $row['Id_reservacion'],
+                    'id_service' => $row['Id_servicio'],
+                    'id_promotion' => $row['Id_promocion'],
+                    'id_Admin' => $row['Administrador_id_administrador'],
+                    'fecha_registro' => $row['Fecha_registro']
                 );
-                array_push($facturas['items'], $item);
+                array_push($facturas, $item);
             }
 
             $this->printJSON($facturas);
@@ -40,7 +39,6 @@ class apifacturas_cabe{
     function getById($id){                  /*FUNCION PARA BUSCAR POR ID*/
         $factura = new Factura_cabe();
         $facturas = array();
-        $facturas["items"] = array();
 
         $res = $factura->obtenerfactura_cabe($id);
 
@@ -48,19 +46,19 @@ class apifacturas_cabe{
             $row = $res->fetch();
         
             $item=array(
-                'Id_factura' => $row['Id_factura'],
-                'Fecha' => $row['Fecha'],
-                'Id_cliente' => $row['Id_cliente'],
-                'Monto' => $row['Monto'],
-                'Cantidad_producto' => $row['Cantidad_producto'],
-                'Id_trabajador' => $row['Id_trabajador'],
-                'Id_reservacion' => $row['Id_reservacion'],
-                'Id_servicio' => $row['Id_servicio'],
-                'Id_promocion' => $row['Id_promocion'],
-                'Administrador_id_administrador' => $row['Administrador_id_administrador'],
-                'Fecha_registro' => $row['Fecha_registro']
+                    'id' => $row['Id_factura'],
+                    'fecha' => $row['Fecha'],
+                    'id_client' => $row['Id_cliente'],
+                    'amount' => $row['Monto'],
+                    'quantity' => $row['Cantidad_producto'],
+                    'id_empl' => $row['Id_trabajador'],
+                    'id_reservation' => $row['Id_reservacion'],
+                    'id_service' => $row['Id_servicio'],
+                    'id_promotion' => $row['Id_promocion'],
+                    'id_Admin' => $row['Administrador_id_administrador'],
+                    'fecha_registro' => $row['Fecha_registro']
             );
-            array_push($facturas["items"], $item);
+            array_push($facturas, $item);
 
             $this->printJSON($facturas);
         }else{
@@ -79,15 +77,15 @@ class apifacturas_cabe{
     }
 
     function error($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>'; 
+        echo json_encode(array('mensaje' => $mensaje)); 
     }
 
     function exito($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>';
+        echo json_encode(array('mensaje' => $mensaje));
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 }
     
