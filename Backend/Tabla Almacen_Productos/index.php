@@ -2,6 +2,8 @@
 
 include_once 'ApiAlmacen.php';
 
+header('Access-Control-Allow-Origin: *');
+
 $api = new apialmacen();
 
     if(isset($_GET['id'])){
