@@ -2,6 +2,8 @@
 
 include_once 'ApiProducto.php';
 
+header('Access-Control-Allow-Origin: *');
+
 $api = new apiproducto();
 
     if(isset($_GET['id'])){
