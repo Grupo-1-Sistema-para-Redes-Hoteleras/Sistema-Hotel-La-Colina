@@ -7,24 +7,23 @@ class apireservacion{
     function getAll(){                       /*FUNCION PARA BUSCAR TODOS*/
         $reserva = new Reservacion();
         $reservas = array();
-        $reservas ["items"] = array();
-
+        
         $res = $reserva -> obtenerreservas();
 
         if($res -> rowCount()){
 
             while($row = $res -> fetch(PDO::FETCH_ASSOC)){
                 $item = array(
-                    'Id_reservacion' => $row['Id_reservacion'],
-                    'Fecha_reservacion' => $row['Fecha_reservacion'],
-                    'Status' => $row['Status'],
-                    'Cantidad_personas' => $row['Cantidad_personas'],
-                    'Id_cliente' => $row['Id_cliente'],
-                    'Id_habitacion' => $row['Id_habitacion'],
-                    'Administrador_id_administrador' => $row['Administrador_id_administrador'],
-                    'Fecha_registro' => $row['Fecha_registro']
+                    'id' => $row['Id_reservacion'],
+                    'fecha' => $row['Fecha_reservacion'],
+                    'status' => $row['Status'],
+                    'quantity' => $row['Cantidad_personas'],
+                    'id_client' => $row['Id_cliente'],
+                    'id_room' => $row['Id_habitacion'],
+                    'id_Admin' => $row['Administrador_id_administrador'],
+                    'fecha_registro' => $row['Fecha_registro']
                 );
-                array_push($reservas['items'], $item);
+                array_push($reservas, $item);
             }
 
             $this->printJSON($reservas);
@@ -37,7 +36,6 @@ class apireservacion{
     function getById($id){                  /*FUNCION PARA BUSCAR POR ID*/
         $reserva = new Reservacion();
         $reservas = array();
-        $reservas["items"] = array();
 
         $res = $reserva->obtenerreserva($id);
 
@@ -45,16 +43,16 @@ class apireservacion{
             $row = $res->fetch();
         
             $item=array(
-                    'Id_reservacion' => $row['Id_reservacion'],
-                    'Fecha_reservacion' => $row['Fecha_reservacion'],
-                    'Status' => $row['Status'],
-                    'Cantidad_personas' => $row['Cantidad_personas'],
-                    'Id_cliente' => $row['Id_cliente'],
-                    'Id_habitacion' => $row['Id_habitacion'],
-                    'Administrador_id_administrador' => $row['Administrador_id_administrador'],
-                    'Fecha_registro' => $row['Fecha_registro']
+                    'id' => $row['Id_reservacion'],
+                    'fecha' => $row['Fecha_reservacion'],
+                    'status' => $row['Status'],
+                    'quantity' => $row['Cantidad_personas'],
+                    'id_client' => $row['Id_cliente'],
+                    'id_room' => $row['Id_habitacion'],
+                    'id_Admin' => $row['Administrador_id_administrador'],
+                    'fecha_registro' => $row['Fecha_registro']
             );
-            array_push($reservas["items"], $item);
+            array_push($reservas, $item);
 
             $this->printJSON($reservas);
         }else{
@@ -93,15 +91,15 @@ class apireservacion{
     }
 
     function error($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>'; 
+        echo json_encode(array('mensaje' => $mensaje)) ; 
     }
 
     function exito($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>';
+        echo json_encode(array('mensaje' => $mensaje)) ;
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 }
     
