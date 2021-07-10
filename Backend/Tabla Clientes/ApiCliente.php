@@ -7,7 +7,6 @@ class apicliente{
     function getAll(){                       /*FUNCION PARA BUSCAR TODOS*/
         $cliente = new Cliente();
         $clientes = array();
-        $clientes ["items"] = array();
 
         $res = $cliente -> obtenerclientes();
 
@@ -15,17 +14,17 @@ class apicliente{
 
             while($row = $res -> fetch(PDO::FETCH_ASSOC)){
                 $item = array(
-                    'Id_cliente' => $row['Id_cliente'],
-                    'Cedula_cliente' => $row['Cedula_cliente'],
-                    'Nombre_cliente' => $row['Nombre_cliente'],
-                    'Apellido_cliente' => $row['Apellido_cliente'],
-                    'Status' => $row['Status'],
-                    'Email_cliente' => $row['Email_cliente'],
-                    'Telf_cliente' => $row['Telf_cliente'],
-                    'Administrador_id_administrador' => $row['Administrador_id_administrador'],
-                    'Fecha_registro' => $row['Fecha_registro']
+                    'id' => $row['Id_cliente'],
+                    'cedula' => $row['Cedula_cliente'],
+                    'name' => $row['Nombre_cliente'],
+                    'lastname' => $row['Apellido_cliente'],
+                    'status' => $row['Status'],
+                    'email' => $row['Email_cliente'],
+                    'telf' => $row['Telf_cliente'],
+                    'id_Admin' => $row['Administrador_id_administrador'],
+                    'fecha_registro' => $row['Fecha_registro']
                 );
-                array_push($clientes['items'], $item);
+                array_push($clientes, $item);
             }
 
             $this->printJSON($clientes);
@@ -38,7 +37,6 @@ class apicliente{
     function getById($id){                  /*FUNCION PARA BUSCAR POR ID*/
         $cliente = new Cliente();
         $clientes = array();
-        $clientes["items"] = array();
 
         $res = $cliente->obtenercliente($id);
 
@@ -46,17 +44,17 @@ class apicliente{
             $row = $res->fetch();
         
             $item=array(
-                    'Id_cliente' => $row['Id_cliente'],
-                    'Cedula_cliente' => $row['Cedula_cliente'],
-                    'Nombre_cliente' => $row['Nombre_cliente'],
-                    'Apellido_cliente' => $row['Apellido_cliente'],
-                    'Status' => $row['Status'],
-                    'Email_cliente' => $row['Email_cliente'],
-                    'Telf_cliente' => $row['Telf_cliente'],
-                    'Administrador_id_administrador' => $row['Administrador_id_administrador'],
-                    'Fecha_registro' => $row['Fecha_registro']
+                    'id' => $row['Id_cliente'],
+                    'cedula' => $row['Cedula_cliente'],
+                    'name' => $row['Nombre_cliente'],
+                    'lastname' => $row['Apellido_cliente'],
+                    'status' => $row['Status'],
+                    'email' => $row['Email_cliente'],
+                    'telf' => $row['Telf_cliente'],
+                    'id_Admin' => $row['Administrador_id_administrador'],
+                    'fecha_registro' => $row['Fecha_registro']
             );
-            array_push($clientes["items"], $item);
+            array_push($clientes, $item);
 
             $this->printJSON($clientes);
         }else{
@@ -95,15 +93,15 @@ class apicliente{
     }
 
     function error($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>'; 
+        echo json_encode(array('mensaje' => $mensaje)); 
     }
 
     function exito($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>';
+        echo json_encode(array('mensaje' => $mensaje));
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 }
     
