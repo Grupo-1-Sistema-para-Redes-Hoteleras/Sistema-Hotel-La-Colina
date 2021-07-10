@@ -2,6 +2,8 @@
 
 include_once 'ApiCliente.php';
 
+header('Access-Control-Allow-Origin: *');
+
 $api = new apicliente();
 
     if(isset($_GET['id'])){
