@@ -7,7 +7,6 @@ class apialmacen{
     function getAll(){                       /*FUNCION PARA BUSCAR TODOS*/
         $almacen = new Almacen();
         $almacenes = array();
-        $almacenes ["items"] = array();
 
         $res = $almacen -> obteneralmacenes();
 
@@ -15,14 +14,14 @@ class apialmacen{
 
             while($row = $res -> fetch(PDO::FETCH_ASSOC)){
                 $item = array(
-                    'Id_almacen' => $row['Id_almacen'],
-                    'Id_producto' => $row['Id_producto'],
-                    'Cantidad_producto' => $row['Cantidad_producto'],
-                    'Status' => $row['Status'],
-                    'Fecha_registro' => $row['Fecha_registro'],
-                    'Administrador_id_administrador' => $row['Administrador_id_administrador']
+                    'id' => $row['Id_almacen'],
+                    'id_product' => $row['Id_producto'],
+                    'quantity' => $row['Cantidad_producto'],
+                    'status' => $row['Status'],
+                    'fecha_registro' => $row['Fecha_registro'],
+                    'id_Admin' => $row['Administrador_id_administrador']
                 );
-                array_push($almacenes['items'], $item);
+                array_push($almacenes, $item);
             }
 
             $this->printJSON($almacenes);
@@ -35,7 +34,6 @@ class apialmacen{
     function getById($id){                  /*FUNCION PARA BUSCAR POR ID*/
         $almacen = new Almacen();
         $almacenes = array();
-        $almacenes["items"] = array();
 
         $res = $almacen->obteneralmacen($id);
 
@@ -43,14 +41,14 @@ class apialmacen{
             $row = $res->fetch();
         
             $item=array(
-                    'Id_almacen' => $row['Id_almacen'],
-                    'Id_producto' => $row['Id_producto'],
-                    'Cantidad_producto' => $row['Cantidad_producto'],
-                    'Status' => $row['Status'],
-                    'Fecha_registro' => $row['Fecha_registro'],
-                    'Administrador_id_administrador' => $row['Administrador_id_administrador']
+                    'id' => $row['Id_almacen'],
+                    'id_product' => $row['Id_producto'],
+                    'quantity' => $row['Cantidad_producto'],
+                    'status' => $row['Status'],
+                    'fecha_registro' => $row['Fecha_registro'],
+                    'id_Admin' => $row['Administrador_id_administrador']
             );
-            array_push($almacenes["items"], $item);
+            array_push($almacenes, $item);
 
             $this->printJSON($almacenes);
         }else{
@@ -89,15 +87,15 @@ class apialmacen{
     }
 
     function error($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>'; 
+        echo json_encode(array('mensaje' => $mensaje)); 
     }
 
     function exito($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>';
+        echo json_encode(array('mensaje' => $mensaje));
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 }
     
