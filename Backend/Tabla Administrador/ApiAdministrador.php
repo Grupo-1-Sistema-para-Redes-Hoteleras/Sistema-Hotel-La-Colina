@@ -7,7 +7,6 @@ class apiadministrador{
     function getAll(){                       /*FUNCION PARA BUSCAR TODOS*/
         $admin = new Administrador();
         $admins = array();
-        $admins ["items"] = array();
 
         $res = $admin -> obteneradministradores();
 
@@ -15,15 +14,15 @@ class apiadministrador{
 
             while($row = $res -> fetch(PDO::FETCH_ASSOC)){
                 $item = array(
-                    'Id_administrador' => $row['Id_administrador'],
-                    'Nombre_administrador' => $row['Nombre_administrador'],
-                    'Usuario_administrador' => $row['Usuario_administrador'],
-                    'Password_administrador' => $row['Password_administrador'],
-                    'Status_administrador' => $row['Status_administrador'],
-                    'Fecha' => $row['Fecha'],
-                    'Nivel_administrador' => $row['Nivel_administrador']
+                    'id' => $row['Id_administrador'],
+                    'name' => $row['Nombre_administrador'],
+                    'user' => $row['Usuario_administrador'],
+                    'password' => $row['Password_administrador'],
+                    'status' => $row['Status_administrador'],
+                    'fecha' => $row['Fecha'],
+                    'level_Admin' => $row['Nivel_administrador']
                 );
-                array_push($admins['items'], $item);
+                array_push($admins, $item);
             }
 
             $this->printJSON($admins);
@@ -36,7 +35,6 @@ class apiadministrador{
     function getById($id){                  /*FUNCION PARA BUSCAR POR ID*/
         $admin = new Administrador();
         $admins = array();
-        $admins["items"] = array();
 
         $res = $admin->obteneradministrador($id);
 
@@ -44,15 +42,15 @@ class apiadministrador{
             $row = $res->fetch();
         
             $item=array(
-                    'Id_administrador' => $row['Id_administrador'],
-                    'Nombre_administrador' => $row['Nombre_administrador'],
-                    'Usuario_administrador' => $row['Usuario_administrador'],
-                    'Password_administrador' => $row['Password_administrador'],
-                    'Status_administrador' => $row['Status_administrador'],
-                    'Fecha' => $row['Fecha'],
-                    'Nivel_administrador' => $row['Nivel_administrador']
+                    'id' => $row['Id_administrador'],
+                    'name' => $row['Nombre_administrador'],
+                    'user' => $row['Usuario_administrador'],
+                    'password' => $row['Password_administrador'],
+                    'status' => $row['Status_administrador'],
+                    'fecha' => $row['Fecha'],
+                    'level_Admin' => $row['Nivel_administrador']
             );
-            array_push($admins["items"], $item);
+            array_push($admins, $item);
 
             $this->printJSON($admins);
         }else{
@@ -90,15 +88,15 @@ class apiadministrador{
     }
 
     function error($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>'; 
+        echo json_encode(array('mensaje' => $mensaje)); 
     }
 
     function exito($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>';
+        echo json_encode(array('mensaje' => $mensaje));
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 }  
 ?>
