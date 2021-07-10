@@ -2,6 +2,8 @@
 
 include_once 'ApiFactura_cuerpo.php';
 
+header('Access-Control-Allow-Origin: *');
+
 $api = new apifacturas_cuerpo();
 
     if(isset($_GET['id'])){
