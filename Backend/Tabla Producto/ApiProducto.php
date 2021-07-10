@@ -7,7 +7,6 @@ class apiproducto{
     function getAll(){                       /*FUNCION PARA BUSCAR TODOS*/
         $producto = new Producto();
         $productos = array();
-        $productos ["items"] = array();
 
         $res = $producto -> obtenerproductos();
 
@@ -15,13 +14,14 @@ class apiproducto{
 
             while($row = $res -> fetch(PDO::FETCH_ASSOC)){
                 $item = array(
-                    'Nombre_producto' => $row['Nombre_producto'],
-                    'Status' => $row['Status'],
-                    'Descripcion_producto' => $row['Descripcion_producto'],
-                    'Precio_producto' => $row['Precio_producto'],
-                    'Fecha_registro' => $row['Fecha_registro']
+                    'id' => $row['Id_producto'],
+                    'name' => $row['Nombre_producto'],
+                    'status' => $row['Status'],
+                    'description' => $row['Descripcion_producto'],
+                    'price' => $row['Precio_producto'],
+                    'fecha_registro' => $row['Fecha_registro']
                 );
-                array_push($productos['items'], $item);
+                array_push($productos, $item);
             }
 
             $this->printJSON($productos);
@@ -34,7 +34,6 @@ class apiproducto{
     function getById($id){                  /*FUNCION PARA BUSCAR POR ID*/
         $producto = new Producto();
         $productos = array();
-        $productos["items"] = array();
 
         $res = $producto->obtenerproducto($id);
 
@@ -42,13 +41,14 @@ class apiproducto{
             $row = $res->fetch();
         
             $item=array(
-                    'Nombre_producto' => $row['Nombre_producto'],
-                    'Status' => $row['Status'],
-                    'Descripcion_producto' => $row['Descripcion_producto'],
-                    'Precio_producto' => $row['Precio_producto'],
-                    'Fecha_registro' => $row['Fecha_registro']
+                    'id' => $row['Id_producto'],
+                    'name' => $row['Nombre_producto'],
+                    'status' => $row['Status'],
+                    'description' => $row['Descripcion_producto'],
+                    'price' => $row['Precio_producto'],
+                    'fecha_registro' => $row['Fecha_registro']
             );
-            array_push($productos["items"], $item);
+            array_push($productos, $item);
 
             $this->printJSON($productos);
         }else{
@@ -87,15 +87,15 @@ class apiproducto{
     }
 
     function error($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>'; 
+        echo json_encode(array('mensaje' => $mensaje)); 
     }
 
     function exito($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>';
+        echo json_encode(array('mensaje' => $mensaje));
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 }
     
