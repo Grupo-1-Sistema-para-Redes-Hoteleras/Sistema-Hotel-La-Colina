@@ -2,6 +2,8 @@
 
 include_once 'ApiServicio.php';
 
+header('Access-Control-Allow-Origin: *');
+
 $api = new apiservicio();
 
     if(isset($_GET['id'])){
