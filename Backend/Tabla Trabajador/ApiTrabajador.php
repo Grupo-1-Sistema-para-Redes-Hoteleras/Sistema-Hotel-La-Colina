@@ -7,7 +7,6 @@ class apitrabajador{
     function getAll(){                       /*FUNCION PARA BUSCAR TODOS*/
         $trabajador = new Trabajador();
         $trabajadores = array();
-        $trabajadores ["items"] = array();
 
         $res = $trabajador -> obtenertrabajadores();
 
@@ -15,20 +14,20 @@ class apitrabajador{
 
             while($row = $res -> fetch(PDO::FETCH_ASSOC)){
                 $item = array(
-                    'Id_trabajador' => $row['Id_trabajador'],
-                    'Id_cargo' => $row['Id_cargo'],
-                    'Cedula_trabajador' => $row['Cedula_trabajador'],
-                    'Nombre_trabajador' => $row['Nombre_trabajador'],
-                    'Apellido_trabajador' => $row['Apellido_trabajador'],
-                    'Status_trabajador' => $row['Status_trabajador'],
-                    'Email_trabajador' => $row['Email_trabajador'],
-                    'Telf_trabajador' => $row['Telf_trabajador'],
-                    'Fecha_nacimiento' => $row['Fecha_nacimiento'],
-                    'Id_administrador' => $row['Id_administrador'],
-                    'Administrador_id_administrador' => $row['Administrador_id_administrador'],
-                    'Fecha_registro' => $row['Fecha_registro']
+                    'id' => $row['Id_trabajador'],
+                    'id_position' => $row['Id_cargo'],
+                    'cedula' => $row['Cedula_trabajador'],
+                    'name' => $row['Nombre_trabajador'],
+                    'lastname' => $row['Apellido_trabajador'],
+                    'status' => $row['Status_trabajador'],
+                    'email' => $row['Email_trabajador'],
+                    'telf' => $row['Telf_trabajador'],
+                    'fecha_nacimiento' => $row['Fecha_nacimiento'],
+                    'id_admin' => $row['Id_administrador'],
+                    'id_Admin' => $row['Administrador_id_administrador'],
+                    'fecha_registro' => $row['Fecha_registro']
                 );
-                array_push($trabajadores['items'], $item);
+                array_push($trabajadores, $item);
             }
 
             $this->printJSON($trabajadores);
@@ -41,7 +40,6 @@ class apitrabajador{
     function getById($id){                  /*FUNCION PARA BUSCAR POR ID*/
         $trabajador = new Trabajador();
         $trabajadores = array();
-        $trabajadores["items"] = array();
 
         $res = $trabajador->obtenertrabajador($id);
 
@@ -49,20 +47,20 @@ class apitrabajador{
             $row = $res->fetch();
         
             $item=array(
-                    'Id_trabajador' => $row['Id_trabajador'],
-                    'Id_cargo' => $row['Id_cargo'],
-                    'Cedula_trabajador' => $row['Cedula_trabajador'],
-                    'Nombre_trabajador' => $row['Nombre_trabajador'],
-                    'Apellido_trabajador' => $row['Apellido_trabajador'],
-                    'Status_trabajador' => $row['Status_trabajador'],
-                    'Email_trabajador' => $row['Email_trabajador'],
-                    'Telf_trabajador' => $row['Telf_trabajador'],
-                    'Fecha_nacimiento' => $row['Fecha_nacimiento'],
-                    'Id_administrador' => $row['Id_administrador'],
-                    'Administrador_id_administrador' => $row['Administrador_id_administrador'],
-                    'Fecha_registro' => $row['Fecha_registro']
+                    'id' => $row['Id_trabajador'],
+                    'id_position' => $row['Id_cargo'],
+                    'cedula' => $row['Cedula_trabajador'],
+                    'name' => $row['Nombre_trabajador'],
+                    'lastname' => $row['Apellido_trabajador'],
+                    'status' => $row['Status_trabajador'],
+                    'email' => $row['Email_trabajador'],
+                    'telf' => $row['Telf_trabajador'],
+                    'fecha_nacimiento' => $row['Fecha_nacimiento'],
+                    'id_admin' => $row['Id_administrador'],
+                    'id_Admin' => $row['Administrador_id_administrador'],
+                    'fecha_registro' => $row['Fecha_registro']
             );
-            array_push($trabajadores["items"], $item);
+            array_push($trabajadores, $item);
 
             $this->printJSON($trabajadores);
         }else{
@@ -70,7 +68,7 @@ class apitrabajador{
         }
     }
 
-    function AddTrabajador($item){
+    function AddTrabajador($item){  //Funcion Insertar
 
         $trabajador = new Trabajador();
 
@@ -101,15 +99,15 @@ class apitrabajador{
     }
 
     function error($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>'; 
+        echo json_encode(array('mensaje' => $mensaje)); 
     }
 
     function exito($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>';
+        echo json_encode(array('mensaje' => $mensaje));
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 }
     
