@@ -2,6 +2,8 @@
 
 include_once 'ApiCargo.php';
 
+header('Access-Control-Allow-Origin: *');
+
 $api = new apicargo();
 
     if(isset($_GET['id'])){
