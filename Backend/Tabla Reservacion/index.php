@@ -2,6 +2,8 @@
 
 include_once 'ApiReservacion.php';
 
+header('Access-Control-Allow-Origin: *');
+
 $api = new apireservacion();
 
     if(isset($_GET['id'])){
