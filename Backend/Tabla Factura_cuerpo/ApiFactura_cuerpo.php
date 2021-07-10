@@ -7,7 +7,6 @@ class apifacturas_cuerpo{
     function getAll(){                       /*FUNCION PARA BUSCAR TODOS*/
         $factura = new Factura_cuerpo();
         $facturas = array();
-        $facturas ["items"] = array();
 
         $res = $factura -> obtenerfacturas_cuerpo();
 
@@ -15,15 +14,15 @@ class apifacturas_cuerpo{
 
             while($row = $res -> fetch(PDO::FETCH_ASSOC)){
                 $item = array(
-                    'Id_factura_cuerpo' => $row['Id_factura_cuerpo'],
-                    'Id_factura_cabe' => $row['Id_factura_cabe'],
-                    'Cantidad' => $row['Cantidad'],
-                    'Status_reservacion' => $row['Status_reservacion'],
-                    'Status_servicio' => $row['Status_servicio'],
-                    'Status_promocion' => $row['Status_promocion'],
-                    'Fecha_registro' => $row['Fecha_registro']
+                    'id' => $row['Id_factura_cuerpo'],
+                    'id_cabe' => $row['Id_factura_cabe'],
+                    'quantity' => $row['Cantidad'],
+                    'status_reservation' => $row['Status_reservacion'],
+                    'status_service' => $row['Status_servicio'],
+                    'status_promotion' => $row['Status_promocion'],
+                    'fecha_registro' => $row['Fecha_registro']
                 );
-                array_push($facturas['items'], $item);
+                array_push($facturas, $item);
             }
 
             $this->printJSON($facturas);
@@ -36,7 +35,6 @@ class apifacturas_cuerpo{
     function getById($id){                  /*FUNCION PARA BUSCAR POR ID*/
         $factura = new Factura_cuerpo();
         $facturas = array();
-        $facturas["items"] = array();
 
         $res = $factura->obtenerfactura_cuerpo($id);
 
@@ -44,15 +42,15 @@ class apifacturas_cuerpo{
             $row = $res->fetch();
         
             $item=array(
-                'Id_factura_cuerpo' => $row['Id_factura_cuerpo'],
-                'Id_factura_cabe' => $row['Id_factura_cabe'],
-                'Cantidad' => $row['Cantidad'],
-                'Status_reservacion' => $row['Status_reservacion'],
-                'Status_servicio' => $row['Status_servicio'],
-                'Status_promocion' => $row['Status_promocion'],
-                'Fecha_registro' => $row['Fecha_registro']
+                    'id' => $row['Id_factura_cuerpo'],
+                    'id_cabe' => $row['Id_factura_cabe'],
+                    'quantity' => $row['Cantidad'],
+                    'status_reservation' => $row['Status_reservacion'],
+                    'status_service' => $row['Status_servicio'],
+                    'status_promotion' => $row['Status_promocion'],
+                    'fecha_registro' => $row['Fecha_registro']
             );
-            array_push($facturas["items"], $item);
+            array_push($facturas, $item);
 
             $this->printJSON($facturas);
         }else{
@@ -71,15 +69,15 @@ class apifacturas_cuerpo{
     }
 
     function error($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>'; 
+        echo json_encode(array('mensaje' => $mensaje)); 
     }
 
     function exito($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>';
+        echo json_encode(array('mensaje' => $mensaje));
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 }
     
