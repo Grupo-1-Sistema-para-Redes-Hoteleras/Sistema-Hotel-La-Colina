@@ -2,6 +2,8 @@
 
 include_once 'ApiFactura_cabe.php';
 
+header('Access-Control-Allow-Origin: *');
+
 $api = new apifacturas_cabe();
 
     if(isset($_GET['id'])){
