@@ -2,6 +2,8 @@
 
 include_once 'ApiAdministrador.php';
 
+header('Access-Control-Allow-Origin: *');
+
 $api = new apiadministrador();
 
     if(isset($_GET['id'])){
