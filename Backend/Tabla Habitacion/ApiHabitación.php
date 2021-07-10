@@ -7,7 +7,6 @@ class apihabitacion{
     function getAll(){
         $habitacion = new Habitacion();
         $habitacions = array();
-        $habitacions ["items"] = array();
 
         $res = $habitacion -> obtenerHabitaciones();
 
@@ -15,16 +14,16 @@ class apihabitacion{
 
             while($row = $res -> fetch(PDO::FETCH_ASSOC)){
                 $item = array(
-                    'Id_habitacion' => $row['Id_habitacion'],
-                    'Id_tipo_habitacion' => $row['Id_tipo_habitacion'],
-                    'Precio_habitacion' => $row['Precio_habitacion'],
-                    'Status' => $row['Status'],
-                    'Numero_habitacion' => $row['Numero_habitacion'],
-                    'Descripcion' => $row['Descripcion'],
-                    'Fecha_registro' => $row['Fecha_registro'],
-                    'Administrador_id_administrador' => $row['Administrador_id_administrador']
+                    'id' => $row['Id_habitacion'],
+                    'id_room_type' => $row['Id_tipo_habitacion'],
+                    'price' => $row['Precio_habitacion'],
+                    'status' => $row['Status'],
+                    'number' => $row['Numero_habitacion'],
+                    'description' => $row['Descripcion'],
+                    'fecha_registro' => $row['Fecha_registro'],
+                    'id_Admin' => $row['Administrador_id_administrador']
                 );
-                array_push($habitacions['items'], $item);
+                array_push($habitacions, $item);
             }
 
             $this->printJSON($habitacions);
@@ -38,7 +37,6 @@ class apihabitacion{
     function getById($id){
         $habitacion = new Habitacion();
         $habitacions = array();
-        $habitacions["items"] = array();
 
         $res = $habitacion->obtenerHabitacion($id);
 
@@ -46,16 +44,16 @@ class apihabitacion{
             $row = $res->fetch();
         
             $item=array(
-                'Id_habitacion' => $row['Id_habitacion'],
-                'Id_tipo_habitacion' => $row['Id_tipo_habitacion'],    
-                'Precio_habitacion' => $row['Precio_habitacion'],
-                'Status' => $row['Status'],
-                'Numero_habitacion' => $row['Numero_habitacion'],
-                'Descripcion' => $row['Descripcion'],
-                'Fecha_registro' => $row['Fecha_registro'],
-                'Administrador_id_administrador' => $row['Administrador_id_administrador']
+                    'id' => $row['Id_habitacion'],
+                    'id_room_type' => $row['Id_tipo_habitacion'],
+                    'price' => $row['Precio_habitacion'],
+                    'status' => $row['Status'],
+                    'number' => $row['Numero_habitacion'],
+                    'description' => $row['Descripcion'],
+                    'fecha_registro' => $row['Fecha_registro'],
+                    'id_Admin' => $row['Administrador_id_administrador']
             );
-            array_push($habitacions["items"], $item);
+            array_push($habitacions, $item);
 
             $this->printJSON($habitacions);
         }else{
@@ -87,15 +85,15 @@ class apihabitacion{
     }
 
     function error($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>'; 
+        echo json_encode(array('mensaje' => $mensaje)); 
     }
 
     function exito($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>';
+        echo json_encode(array('mensaje' => $mensaje));
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 }
 
