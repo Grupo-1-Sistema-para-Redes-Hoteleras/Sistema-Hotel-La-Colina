@@ -7,23 +7,24 @@ class apiservicio{
     function getAll(){                       /*FUNCION PARA BUSCAR TODOS*/
         $servicio = new Servicio();
         $servicios = array();
-        $servicios ["items"] = array();
-
+        
         $res = $servicio -> obtenerservicios();
 
         if($res -> rowCount()){
 
             while($row = $res -> fetch(PDO::FETCH_ASSOC)){
                 $item = array(
-                    'Id_servicio' => $row['Id_servicio'],
-                    'Nombre_servicio' => $row['Nombre_servicio'],
-                    'Precio_servicio' => $row['Precio_servicio'],
-                    'Status' => $row['Status'],
-                    'Descripcion' => $row['Descripcion'],
-                    'Administrador_id_administrador' => $row['Administrador_id_administrador'],
-                    'Fecha_registro' => $row['Fecha_registro']
+                    'id' =>              $row['Id_servicio'],
+                    'name' =>            $row['Nombre_servicio'],
+                    'icono' =>           $row['icono'],
+                    'imges' =>           explode(",",$row['imagenes']),
+                    'price' =>           $row['Precio_servicio'],
+                    'status' =>          $row['Status'],
+                    'description' =>     $row['Descripcion'],
+                    'id_Admin' =>        $row['Administrador_id_administrador'],
+                    'fecha_registro' =>  $row['Fecha_registro']
                 );
-                array_push($servicios['items'], $item);
+                array_push($servicios, $item);
             }
 
             $this->printJSON($servicios);
@@ -36,7 +37,6 @@ class apiservicio{
     function getById($id){                  /*FUNCION PARA BUSCAR POR ID*/
         $servicio = new Servicio();
         $servicios = array();
-        $servicios["items"] = array();
 
         $res = $servicio->obtenerservicio($id);
 
@@ -44,15 +44,17 @@ class apiservicio{
             $row = $res->fetch();
         
             $item=array(
-                    'Id_servicio' => $row['Id_servicio'],
-                    'Nombre_servicio' => $row['Nombre_servicio'],
-                    'Precio_servicio' => $row['Precio_servicio'],
-                    'Status' => $row['Status'],
-                    'Descripcion' => $row['Descripcion'],
-                    'Administrador_id_administrador' => $row['Administrador_id_administrador'],
-                    'Fecha_registro' => $row['Fecha_registro']
+                    'id' =>              $row['Id_servicio'],
+                    'name' =>            $row['Nombre_servicio'],
+                    'icono' =>           $row['icono'],
+                    'imges' =>           explode(",",$row['imagenes']),
+                    'price' =>           $row['Precio_servicio'],
+                    'status' =>          $row['Status'],
+                    'description' =>     $row['Descripcion'],
+                    'id_Admin' =>        $row['Administrador_id_administrador'],
+                    'fecha_registro' =>  $row['Fecha_registro']
             );
-            array_push($servicios["items"], $item);
+            array_push($servicios, $item);
 
             $this->printJSON($servicios);
         }else{
@@ -91,15 +93,15 @@ class apiservicio{
     }
 
     function error($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>'; 
+        echo json_encode(array('mensaje' => $mensaje));
     }
 
     function exito($mensaje){
-        echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>';
+        echo json_encode(array('mensaje' => $mensaje));
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 }
     
