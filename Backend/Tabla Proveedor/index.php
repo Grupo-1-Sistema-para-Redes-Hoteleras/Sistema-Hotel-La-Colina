@@ -2,6 +2,8 @@
 
 include_once 'ApiProveedor.php';
 
+header('Access-Control-Allow-Origin: *');
+
 $api = new apiproveedor();
 
     if(isset($_GET['id'])){
