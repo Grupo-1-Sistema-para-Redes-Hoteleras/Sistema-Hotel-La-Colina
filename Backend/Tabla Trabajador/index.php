@@ -2,6 +2,8 @@
 
 include_once 'ApiTrabajador.php';
 
+header('Access-Control-Allow-Origin: *');
+
 $api = new apitrabajador();
 
     if(isset($_GET['id'])){
