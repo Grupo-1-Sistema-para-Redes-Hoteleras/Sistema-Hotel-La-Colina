@@ -1,0 +1,41 @@
+<div class="container mt-5 pt-5">
+    <h2 class="h1 text-center font-weight-bold">
+        <a href=""><i class="fas fa-arrow-circle-left text-dark"></i></a> Habitaciones Disponibles
+    </h2>
+    <div class="row py-3 my-3 hab" *ngFor="let item of typeHabitations; let i=index;">
+        <div class="col">
+            <div class="row">
+                <div class="col col-md-4">
+                    <div class="row">
+                        <div class="col">
+                            <swiper-habitation [images]="item.imges"></swiper-habitation>
+                        </div>
+                        <div class="col my-2"></div>
+                    </div>
+                </div>
+                <div class="col col-md-8">
+                    <div class="row m-0">
+                        <div class="col-6">
+                            <p class="h2 text-danger font-weight-bold">
+                                {{ item.name | uppercase }}
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <span class="font-weight-bold bg-warning p-2 rounded">
+                               Desde ${{ item.price }} 
+                            </span>
+                        </div>
+                        <div class="col lead">
+                            {{ item.description }}
+                        </div>
+                    </div>
+                    <reservation-from *ngIf="selectReservation[i]" [habitations]="filterHabitations(item)"></reservation-from>
+                    <div class="row justify-content-center">
+                        <button class="btn btn-warning text-dark mt-5" (click)="reservar(item,i)">RESERVAR</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
