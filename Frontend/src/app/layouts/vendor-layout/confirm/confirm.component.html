@@ -1,0 +1,23 @@
+<div class="container-fluid vh-100">
+    <div class="row d-flex justify-content-center vh-100">
+
+        <div class="col-10 col-md-7 col-lg-5 rounded p-3 align-self-center confirm animate__animated animate__fadeIn animate__slow">
+
+            <div class="h4 text-center text-light p-4 ">¿Eres Proveedor Regular?</div>
+
+            <form #form="ngForm" (ngSubmit)="onSubmit(form) ">
+
+                <div class="mb-3 ">
+                    <input type="text " name="id " [(ngModel)]="codigo_temp" required class="form-control " placeholder="Codigo de Cliente">
+                </div>
+
+                <div class="d-grid gap-2 ">
+                    <button type="submit" class="btn btn-outline-success ">Si</button>
+                    <button type="button" (click)="noSubmit()" class="btn btn-outline-danger ">No</button>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
