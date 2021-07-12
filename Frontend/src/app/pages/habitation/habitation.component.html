@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card animate__animated animate__fadeInDown">
+            <div class="card-header">
+                <h4 class="card-title">Lista actual</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-warning">
+                            <th>
+                                Nº Habitación
+                            </th>
+                            <th>
+                                Tipo
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th class="text-right">
+                                Precio
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr class="list" *ngFor="let item of items">
+                                <td>
+                                    {{ item.num }}
+                                </td>
+                                <td>
+                                    {{ item.type }}
+                                </td>
+                                <td [ngClass]="{'bg-success': item.status === 'limpia' , 'bg-danger': item.status === 'ocupada' , 'bg-info': item.status === 'mantenimiento' , 'bg-warning': item.status === 'desocupada' }">
+                                    {{ item.status }}
+                                </td>
+                                <td class="text-right">
+                                    ${{ item.price }}
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
