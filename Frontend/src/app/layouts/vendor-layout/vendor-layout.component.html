@@ -1,0 +1,6 @@
+<div class="container-fluid vh-100">
+    <app-confirm *ngIf="!confirm" (confirm)="confirmaProveedor( $event )" (codigo)="getCodigo( $event )"></app-confirm>
+
+    <app-form-vendor *ngIf="confirm" [vendor]="vendor" (confirm)="confirmaProveedor($event)"></app-form-vendor>
+
+</div>
