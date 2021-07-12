@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card animate__animated animate__fadeInDown">
+            <div class="card-header">
+                <h4 class="card-title">Movimientos</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-warning">
+                            <th>
+                                Nº Factura
+                            </th>
+                            <th>
+                                Fecha
+                            </th>
+                            <th class="text-center">
+                                Cliente
+                            </th>
+                            <th class="text-center">
+                                Trabajador
+                            </th>
+                            <th class="text-center">
+                                Cantidad Productos
+                            </th>
+                            <th>
+                                Monto
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of items">
+                                <td>
+                                    {{ item.idFactura }}
+                                </td>
+                                <td>
+                                    {{ item.date }}
+                                </td>
+                                <td class="text-center">
+                                    {{ item.idClient }}
+                                </td>
+                                <td class="text-center">
+                                    {{ item.idTrabajador }}
+                                </td>
+                                <td class="text-center">
+                                    {{ item.cant }}
+                                </td>
+                                <td class="text-right">
+                                    Bs {{ item.monto }}
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
