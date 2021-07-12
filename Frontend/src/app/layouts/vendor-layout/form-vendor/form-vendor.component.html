@@ -1,0 +1,90 @@
+<div class="row justify-content-center animate__animated animate__fadeIn animate__slow">
+
+    <div class="col-md-8 mt-3">
+        <div class="card card-user">
+            <div class="card-header">
+                <h5 class="card-title">Información Propuesta</h5>
+            </div>
+            <div class="card-body">
+                <form #form="ngForm" (ngSubmit)="onSubmit(form) ">
+                    <div class="row">
+                        <div class="col-md-5 pr-1">
+                            <div class="form-group">
+                                <label>Empresa (Obligatorio)</label>
+                                <input type="text" name="business" ngModel class="form-control text-center">
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-1">
+                            <div class="form-group">
+                                <label>Producto</label>
+                                <input type="text" name="product" ngModel class="form-control text-center" placeholder="Nombre Producto">
+                            </div>
+                        </div>
+                        <div class="col-md-4 pl-1">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Cantidad</label>
+                                <input type="number" name="quantity" ngModel class="form-control text-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 pr-1">
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input type="text" name="name" [(ngModel)]="vendor.name" class="form-control text-center">
+                            </div>
+                        </div>
+                        <div class="col-md-6 pl-1">
+                            <div class="form-group">
+                                <label>Apellido</label>
+                                <input type="text" name="lastname" [(ngModel)]="vendor.lastname" class="form-control text-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Dirección</label>
+                                <input type="text" name="direction" [(ngModel)]="vendor.direction" class="form-control text-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 pr-1">
+                            <div class="form-group">
+                                <label>Telefono</label>
+                                <input type="text" name="telf" [(ngModel)]="vendor.telf" class="form-control text-center">
+                            </div>
+                        </div>
+                        <div class="col-md-4 px-1">
+                            <div class="form-group">
+                                <label>Correo Electronico</label>
+                                <input type="email" name="email" [(ngModel)]="vendor.email" class="form-control text-center">
+                            </div>
+                        </div>
+                        <div class="col-md-4 pl-1">
+                            <div class="form-group">
+                                <label>Codigo Proveedor</label>
+                                <input type="text" name="id" [(ngModel)]="vendor.id" disabled class="form-control text-center" placeholder="Codigo Antiguedad">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Descripción del Servicio</label>
+                                <textarea class="form-control textarea text-center" name="description" ngModel placeholder="detalles que desea resaltar o comentar de su producto"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="update ml-auto mr-auto">
+                            <button type="submit" class="btn btn-warning btn-round">Enviar Propuesta</button>
+                            <button class="btn btn-danger btn-round" (click)="noSubmit()">Descartar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
