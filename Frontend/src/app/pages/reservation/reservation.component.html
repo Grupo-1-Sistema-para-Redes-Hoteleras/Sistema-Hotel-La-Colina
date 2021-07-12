@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let item of items">
+        <div class="card card-stats animate__animated animate__zoomIn animate__fast" [ngClass]="{'bg-success': item.status === 'pagado','bg-warning': item.status === 'sin confirmar','bg-primary': item.status === 'confirmado'}">
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col-5 col-md-4">
+                        <div class="icon-big text-center icon-warning">
+                            <i class="nc-icon text-light" [ngClass]="{'nc-money-coins': item.status === 'pagado', 'nc-lock-circle-open': item.status === 'sin confirmar', 'nc-key-25': item.status === 'confirmado'}"></i>
+                        </div>
+                    </div>
+                    <div class="col-7 col-md-8">
+                        <div class="numbers">
+                            <h6 class="card-title">{{ item.typeHabitation }}</h6>
+                            <p class="card-category text-light">Habitación: {{item.habitation}}</p>
+                            <p class="card-category text-light">{{ item.status }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <hr>
+                <div class="stats text-light btn btn-sm">
+                    <i class="nc-icon nc-alert-circle-i text-dark"></i> Detalles
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
