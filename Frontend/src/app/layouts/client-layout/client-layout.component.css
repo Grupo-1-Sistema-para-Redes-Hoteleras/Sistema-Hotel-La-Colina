@@ -1,0 +1,40 @@
+.card-title {
+    font-size: 4rem !important;
+    margin-top: 20% !important;
+}
+
+.card-img {
+    opacity: 0.5;
+}
+
+.h2 {
+    color: rgb(202, 161, 75) !important;
+}
+
+.btn-warning {
+    background: rgb(202, 161, 75) !important;
+}
+
+.btn-warning:hover {
+    background: rgb(231, 175, 53) !important;
+}
+
+.icono-service {
+    cursor: pointer;
+}
+
+.icono-service:hover {
+    background: rgb(202, 161, 75);
+}
+
+.bg-footer {
+    background: rgb(202, 161, 75);
+}
+
+.asistente {
+    position: fixed;
+    right: 5px;
+    bottom: 15px;
+    z-index: 999;
+    background: rgb(255, 255, 255, 0.5);
+}

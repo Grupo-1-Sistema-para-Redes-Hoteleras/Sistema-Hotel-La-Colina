@@ -1,0 +1,98 @@
+<navbar-p></navbar-p>
+
+<div class="container-fluid p-0" id="home">
+
+    <!-- Header-->
+    <div class="card bg-dark text-white">
+        <img src="assets/img/img-head.jpg" class="card-img" alt="...">
+        <div class="card-img-overlay text-center">
+            <h5 class="card-title">Hotel Colina</h5>
+            <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab itaque dolore fugiat nostrum atque.</p>
+
+        </div>
+    </div>
+
+    <!-- Asistente Virtual -->
+    <app-asistente class="asistente rounded"></app-asistente>
+
+    <!-- Servicios -->
+    <div class="row m-0 justify-content-center" id="services">
+        <div class="col-12 pt-5 mt-5 text-center">
+            <h2 class="h2 font-weight-bold">NUESTROS SERVICIOS</h2>
+
+            <div class="row mx-2 pt-lg-5 px-lg-5 pb-0">
+                <div class="col p-lg-5 icono-service" *ngFor="let item of items" (click)="selectService(item)">
+                    <img src="assets/img/{{ item.icono }}" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="col text-center">
+                <p class="animate__animated animate__flipInY lead">{{ serviceSelect.description }}</p>
+
+                <div class="col animate__animated animate__fadeIn">
+                    <carrousel [data]="serviceSelect"></carrousel>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Reservación -->
+    <div class="row m-0 justify-content-center bg-dark" id="reservation">
+        <div class="col text-center py-4">
+            <h2 class="h2 text-light font-weight-bold mb-1">RESERVA ONLINE</h2>
+            <p class="text-light">Tu mejor experiencia en hospedaje</p>
+
+            <form class="row justify-content-center">
+                <div class="form-row align-items-center">
+                    <div class="col-auto">
+                        <label class="sr-only" for="dateInicio">Fecha Inicio</label>
+                        <input type="date" class="form-control" id="dateInicio" name="dateInicio" placeholder="">
+                    </div>
+                    <div class="col-auto">
+                        <label class="sr-only" for="dateFinal">Fecha Final</label>
+                        <input type="date" class="form-control" id="dateFinal" name="dateFinal" placeholder="">
+
+                    </div>
+
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-warning mb-2" [routerLink]="['/reservacion']">Consultar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- PIE DE PAGINA -->
+    <div class="row bg-footer m-0">
+        <div class="col d-none d-md-block">
+            <!-- mapa -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2335.7504753608687!2d-69.24219071788275!3d10.07872127720313!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x30a33d0f1af29d59!2sHotel%20la%20colina!5e0!3m2!1ses!2sve!4v1624655564778!5m2!1ses!2sve"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="col py-5">
+            <h2 class="h1 text-light font-weight-bold mb-3">Contactanos</h2>
+            <p class="text-lead">Dirección: xxxxxxxxxxxxxxxx</p>
+            <p class="text-lead">Correo: xxxxxxxxxxxx</p>
+            <p class="text-lead">Telf: xxx - xxxxxxxxxx</p>
+
+            <!--Redes-->
+            <div class="row m-0 mt-4">
+                <a class="btn p-1 mr-2" href="#">
+                    <i class="fab fa-facebook-f fa-lg text-light p-1"></i>
+                </a>
+                <a class="btn p-1 mr-2" href="#">
+                    <i class="fab fa-instagram fa-lg text-light p-1"></i>
+                </a>
+                <a class="btn p-1 mr-2" href="#">
+                    <i class="fab fa-pinterest-p fa-lg text-light p-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
